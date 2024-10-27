@@ -17,34 +17,39 @@ export default function App() {
   const [, navigate] = useLocation();
 
   useEffect(() => {
-    // Manejo del resultado del redireccionamiento
-    getRedirectResult(auth)
-      .then(async (result) => {
-        if (result?.user) {
-          const user = result.user;
-          console.log("User signed in: ", user);
+  //   // Manejo del resultado del redireccionamiento
+  //   getRedirectResult(auth)
+  //     .then(async (result) => {
+  //       if (result?.user) {
+  //         const user = result.user;
+  //         console.log("User signed in: ", user);
 
-          // Extrae la información del usuario
-          const { displayName, email } = user;
-          const age = 25; // Ejemplo de edad, puedes obtenerlo de otra manera
+  //         // Extrae la información del usuario
+  //         const { displayName, email } = user;
+  //         const age = 25; // Ejemplo de edad, puedes obtenerlo de otra manera
 
-          // Almacena la información del usuario en Firestore
-          await setDoc(doc(db, "usuarios-first-project", user.uid), {
-            name: displayName,
-            email: email,
-            age: age,
-          });
+  //         try {
+  //           // Almacena la información del usuario en Firestore
+  //           await setDoc(doc(db, "usuarios-first-project", user.uid), {
+  //             name: displayName,
+  //             email: email,
+  //             age: age,
+  //           });
+  //           console.log("User data stored in Firestore");
+  //         } catch (error) {
+  //           console.error("Error storing user data in Firestore: ", error);
+  //         }
 
-          if (user.emailVerified) {
-            navigate("/home");
-          } else {
-            navigate("/confirmation");
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("Error during sign in: ", error.code, error.message);
-      });
+  //         if (user.emailVerified) {
+  //           navigate("/home");
+  //         } else {
+  //           navigate("/confirmation");
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error during sign in: ", error.code, error.message);
+  //     });
 
     // Observador del estado de autenticación
     const unsubscribe = onAuthStateChanged(auth, (user) => {

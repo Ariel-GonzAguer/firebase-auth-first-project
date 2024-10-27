@@ -7,7 +7,7 @@ import {
 import { auth, db } from "../../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
-export default function Signup() {
+export default function SignUpWithEmailAndPassword() {
   const [, navigate] = useLocation();
 
   const [email, setEmail] = useState("");
@@ -38,7 +38,6 @@ export default function Signup() {
         email: email,
       });
 
-      console.log(user);
       navigate("/confirmation");
     } catch (error) {
       console.log(error.code, error.message);
@@ -50,16 +49,10 @@ export default function Signup() {
     <section
       style={{ display: "flex", flexDirection: "column", textAlign: "center" }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-        }}
-      >
+      <div>
         <div>
-          <h1> Create a new account </h1>
-          <form>
+          <h1>Sign Up</h1>
+          <form onSubmit={onSubmit}>
             <div>
               <label htmlFor="name">Name</label>
               <input
@@ -100,9 +93,7 @@ export default function Signup() {
               />
             </div>
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <button type="submit" onClick={onSubmit}>
-              Sign up
-            </button>
+            <button type="submit">Sign up</button>
           </form>
 
           <p>
@@ -113,5 +104,3 @@ export default function Signup() {
     </section>
   );
 }
-
-//
