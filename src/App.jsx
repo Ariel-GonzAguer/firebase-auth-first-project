@@ -29,7 +29,7 @@ export default function App() {
           const age = 25; // Ejemplo de edad, puedes obtenerlo de otra manera
 
           // Almacena la información del usuario en Firestore
-          await setDoc(doc(db, "users", user.uid), {
+          await setDoc(doc(db, "usuarios-first-project", user.uid), {
             name: displayName,
             email: email,
             age: age,
