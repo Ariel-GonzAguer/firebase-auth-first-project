@@ -9,7 +9,7 @@ import Confirmation from "./components/Confirmation/Confirmation";
 import SignUpWithEmailAndPassword from "./components/SignUp/SignUpWithEmailAndPassword";
 
 // log ins
-import LogInOptions from "./components/LogIn/LogInOptions";
+// import LogInOptions from "./components/LogIn/LogInOptions";
 import LogInWithEmailAndPassword from "./components/LogIn/LogInWithEmailAndPassword.jsx";
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
       <Route path="/home" component={Home} />
       <Route path="/confirmation" component={Confirmation} />
       <Route path="/login" component={LogInWithEmailAndPassword} />
-      <Route path="/login-options" component={LogInOptions} />
+      {/* <Route path="/login-options" component={LogInOptions} /> */}
     </Switch>
   );
 }

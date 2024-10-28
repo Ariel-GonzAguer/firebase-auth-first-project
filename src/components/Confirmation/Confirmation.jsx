@@ -12,7 +12,7 @@ export default function Confirmation() {
         favor, sigue las instrucciones para completar tu registro.
       </p>
 
-      <Link href="/login-options">
+      <Link href="/login">
         <button>Iniciar sesión</button>
       </Link>
     </section>
