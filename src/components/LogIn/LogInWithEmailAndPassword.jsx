@@ -1,37 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
+import { auth, provider } from "../../firebase/firebase";
+import { signInWithPopup } from "firebase/auth";
 import { useLocation } from "wouter";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 600);
 
   const [, navigate] = useLocation();
 
-  async function onLogin(e) {
+  useEffect(() => {
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 600);
+    window.addEventListener("resize", handleResize);
+
+    // Limpieza del evento al desmontar el componente
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      // Signed in
-      const user = userCredential.user;
+      await signInWithEmailAndPassword(auth, email, password);
       navigate("/home");
-      // console.log(user);
     } catch (error) {
-      console.log(error.code, error.message);
+      alert("Error al iniciar sesión. Usuario o contraseña incorrectos.");
+      console.error("Error al iniciar sesión: ", error);
     }
-  }
+  };
+
+  const signInWithGooglePopUp = async () => {
+    try {
+      provider.setCustomParameters({ prompt: "select_account" });
+      await signInWithPopup(auth, provider);
+      navigate("/home");
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google: ", error);
+    }
+  };
 
   return (
     <section
       style={{ display: "flex", flexDirection: "column", textAlign: "center" }}
     >
       <h1>Login</h1>
-      <form onSubmit={onLogin}>
+      <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -54,6 +68,10 @@ export default function Login() {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div style={{ display: isLargeScreen ? "block" : "none" }}>
+        <p>Or Log In with Google POP UP</p>
+        <button onClick={signInWithGooglePopUp}>POP UP</button>
+      </div>
     </section>
   );
 }

@@ -9,7 +9,7 @@ import Confirmation from "./components/Confirmation/Confirmation";
 import SignUpWithEmailAndPassword from "./components/SignUp/SignUpWithEmailAndPassword";
 
 // log ins
-// import LogInOptions from "./components/LogIn/LogInOptions";
+import LogInOptions from "./components/LogIn/LogInOptions";
 import LogInWithEmailAndPassword from "./components/LogIn/LogInWithEmailAndPassword.jsx";
 
 export default function App() {
@@ -19,10 +19,8 @@ export default function App() {
     // Observador del estado de autenticación
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        if (user.emailVerified) {
-          navigate("/home");
-        } else {
-          navigate("/confirmation");
+        if (!user.emailVerified) {
+          navigate("/");
         }
       }
     });

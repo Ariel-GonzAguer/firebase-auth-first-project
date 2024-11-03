@@ -97,7 +97,7 @@ export default function SignUpWithEmailAndPassword() {
           </form>
 
           <p>
-            Already have an account? <Link to="/login">Sign in</Link>
+            Already have an account? <Link to="/login">Log in</Link>
           </p>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-const firebaseApp = initializeApp({
+const firebaseConfig = {
   apiKey: "AIzaSyAsjlAabixf6R1xxmn6ggcbcUzmFY6v-Uk",
   authDomain: "fir-auth-first-project.firebaseapp.com",
   projectId: "fir-auth-first-project",
@@ -10,10 +10,11 @@ const firebaseApp = initializeApp({
   messagingSenderId: "145188538699",
   appId: "1:145188538699:web:21eb7cea150cd52b8200ce",
   measurementId: "G-HLT8V08VR1",
-});
+};
 
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
 
-export default firebaseApp;
-export { auth, db };
+export { auth, provider, db };
