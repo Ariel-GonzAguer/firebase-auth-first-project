@@ -7,17 +7,17 @@ import { useLocation } from "wouter";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 600);
+  // const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 600);
 
   const [, navigate] = useLocation();
 
-  useEffect(() => {
-    const handleResize = () => setIsLargeScreen(window.innerWidth >= 600);
-    window.addEventListener("resize", handleResize);
+  // useEffect(() => {
+  //   const handleResize = () => setIsLargeScreen(window.innerWidth >= 600);
+  //   window.addEventListener("resize", handleResize);
 
-    // Limpieza del evento al desmontar el componente
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   // Limpieza del evento al desmontar el componente
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -68,7 +68,7 @@ export default function Login() {
         </div>
         <button type="submit">Login</button>
       </form>
-      <div style={{ display: isLargeScreen ? "block" : "none" }}>
+      <div /* style={{ display: isLargeScreen ? "block" : "none" }} */>
         <p>Or Log In with Google POP UP</p>
         <button onClick={signInWithGooglePopUp}>POP UP</button>
       </div>
