@@ -3,7 +3,8 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAsjlAabixf6R1xxmn6ggcbcUzmFY6v-Uk",
+  // apiKey: "AIzaSyAsjlAabixf6R1xxmn6ggcbcUzmFY6v-Uk",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "fir-auth-first-project.firebaseapp.com",
   projectId: "fir-auth-first-project",
   storageBucket: "fir-auth-first-project.appspot.com",

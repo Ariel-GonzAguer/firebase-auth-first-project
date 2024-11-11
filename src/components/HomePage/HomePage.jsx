@@ -146,7 +146,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <button onClick={handleUpdateArray}>Actualizar Array</button>
+          {/* <button onClick={handleUpdateArray}>Actualizar Array</button> */}
           <h2>Valor Actual del Array en Firestore</h2>
           <div>
             {firestoreArray.map((item, index) => (
